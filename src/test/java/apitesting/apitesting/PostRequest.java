@@ -9,17 +9,17 @@ import io.restassured.specification.RequestSpecification;
 public class PostRequest {
 
 	public static void main(String[] args) {
-		RequestSpecification requestSpecification= RestAssured.given().log().all();
-		requestSpecification.baseUri("https://restful-booker.herokuapp.com/");
-		requestSpecification.basePath("booking");
-		requestSpecification.body("{\r\n    \"firstname\" : \"Kanishk\",\r\n    \"lastname\" : \"Chandel\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2018-01-01\",\r\n        \"checkout\" : \"2019-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}");
-		//requestSpecification.contentType("application/json;");
-		requestSpecification.contentType(ContentType.JSON);
-		Response response= requestSpecification.post();
-		//ValidatableResponse validateResponse=response.then().log().all();
-		ValidatableResponse validateResponse=response.then().log().all();
-		//validateResponse.statusCode(300);
-		validateResponse.statusCode(200);
+		RestAssured.
+		given().
+		baseUri("https://restful-booker.herokuapp.com/").
+		basePath("booking").
+		body("{\r\n    \"firstname\" : \"Jim\",\r\n    \"lastname\" : \"Brown\",\r\n    \"totalprice\" : 111,\r\n    \"depositpaid\" : true,\r\n    \"bookingdates\" : {\r\n        \"checkin\" : \"2018-01-01\",\r\n        \"checkout\" : \"2019-01-01\"\r\n    },\r\n    \"additionalneeds\" : \"Breakfast\"\r\n}").
+		contentType(ContentType.JSON).
+		post().
+		then().
+		log().
+		all().
+		statusCode(200);
 	}
 
 }
